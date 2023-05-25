@@ -14,8 +14,13 @@ covid <- read.csv("C:/Users/julia/Documents/UNAD/Materias/Análisis de datos/Eta
 indices_entrenamiento <- sample(nrow(covid), nrow(covid)*0.7) # 70% de los datos para entrenamiento covid_entrenamiento <- covid[indices_entrenamiento, ] covid_prueba <- covid[-indices_entrenamiento, ] 
     
 # Entrenar el modelo Naive Bayes 
-library(e1071) # cargar el paquete que contiene el algoritmo Naive Bayes modelo_nb <- naiveBayes(Infectado ~ ., data = covid_entrenamiento)  # Hacer predicciones en el conjunto de prueba predicciones <- predict(modelo_nb, newdata = covid_prueba) 
+library(e1071)
+# cargar el paquete que contiene el algoritmo Naive Bayes modelo_nb <- naiveBayes(Infectado ~ ., data = covid_entrenamiento)  
+
+# Hacer predicciones en el conjunto de prueba 
+predicciones <- predict(modelo_nb, newdata = covid_prueba) 
   
-# Evaluar el rendimiento del modelo tabla_confusion <- table(predicciones, covid_prueba$Infectado) exactitud <- sum(diag(tabla_confusion))/sum(tabla_confusion) print(paste("Exactitud del modelo:", exactitud)) 
+# Evaluar el rendimiento del modelo 
+tabla_confusion <- table(predicciones, covid_prueba$Infectado) exactitud <- sum(diag(tabla_confusion))/sum(tabla_confusion) print(paste("Exactitud del modelo:", exactitud)) 
   
 print(exactitud) 
