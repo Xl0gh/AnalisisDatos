@@ -15,7 +15,8 @@ indices_entrenamiento <- sample(nrow(covid), nrow(covid)*0.7) # 70% de los datos
     
 # Entrenar el modelo Naive Bayes 
 library(e1071)
-# cargar el paquete que contiene el algoritmo Naive Bayes modelo_nb <- naiveBayes(Infectado ~ ., data = covid_entrenamiento)  
+# cargar el paquete que contiene el algoritmo Naive Bayes 
+modelo_nb <- naiveBayes(Infectado ~ ., data = covid_entrenamiento)  
 
 # Hacer predicciones en el conjunto de prueba 
 predicciones <- predict(modelo_nb, newdata = covid_prueba) 
